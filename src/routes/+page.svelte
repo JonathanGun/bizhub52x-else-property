@@ -98,6 +98,8 @@
 		fb.track('PageView', { env: import.meta.env.VITE_ENV });
 	});
 
+	let form;
+
 	import { inview } from 'svelte-inview';
 
 	const inViewOptions = {};
@@ -109,8 +111,19 @@
 			contactViewed = true;
 		}
 	}
-	function trackSubmit() {
-		fb.track('Contact', { env: import.meta.env.VITE_ENV });
+	function trackSubmit(e) {
+		const formData = new FormData(form);
+		const name = formData.get('name');
+		const whatsapp = formData.get('whatsapp');
+
+		fb.track('Contact', { env: import.meta.env.VITE_ENV, name, whatsapp });
+
+		const waText = `Halo, saya ${name}, tertarik dengan BIZHUB 52X. Saya ingin mendapatkan brosur dan price list.`;
+		window.open(
+			`https://wa.me/${import.meta.env.VITE_WHATSAPP_NO}?text=${encodeURI(waText)}`,
+			'_blank'
+		);
+		e.preventDefault();
 	}
 
 	let scrollY: number = 0;
@@ -261,13 +274,7 @@
 			Segera Hubungi Kami Untuk Informasi Lebih Lanjut. Jangan Sampai Kesempatan Terbaik ini
 			Terlewatkan.
 		</p>
-		<form
-			class="p-6 w-full space-y-12 lg:p-24"
-			on:submit={trackSubmit}
-			action="https://wa.me/{import.meta.env.VITE_WHATSAPP_NO}?text=halo"
-			target="_blank"
-			method="get"
-		>
+		<form class="p-6 w-full space-y-12 lg:p-24" bind:this={form} on:submit={trackSubmit}>
 			<div class="space-y-2">
 				<input
 					class="w-full p-3"
@@ -311,9 +318,5 @@
 
 	body {
 		@apply text-stone-100;
-	}
-
-	#banner::before {
-		transform: scale(1);
 	}
 </style>
