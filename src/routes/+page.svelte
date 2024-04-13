@@ -134,13 +134,13 @@
 <div>
 	<div
 		id="banner"
-		class="inset-0 overflow-hidden h-[175vh] w-screen"
+		class="inset-0 overflow-hidden h-[100vh] w-screen"
 		style="overflow-x: hidden; position: relative;"
 	>
 		<div
 			class={tailwindCls.bgImgOverlay}
 			style="background-image: url({imgPreview}); transform: scale({Math.min(
-				1.5,
+				1.8,
 				1 + scrollY / 500
 			)}); overflow-x: hidden; width:100%; height: 100%; position: absolute;"
 		></div>
@@ -148,23 +148,17 @@
 
 	<div class={tailwindCls.primary}>
 		<div
-			class="{tailwindCls.content} space-y-6 absolute flex items-center inset-0"
-			style="top: -{scrollY * 0.5}px"
+			class="{tailwindCls.content} space-y-6 absolute flex flex-col items-center inset-0"
 		>
-			<div class="w-full flex justify-center">
-				<img class="sm:px-20 lg:w-[1000px]" alt="Bizhub 52x" src={logo} />
-			</div>
-		</div>
-	</div>
+			<div class="w-full space-y-6">
+				<div class="w-full flex justify-center">
+					<img class="sm:px-20 lg:w-[1000px]" alt="Bizhub 52x" src={logo} />
+				</div>
 
-	<div class={tailwindCls.primary}>
-		<div
-			class="{tailwindCls.content} space-y-6 absolute {scrollY > 300 ? 'top-1/2' : ''}"
-			style="top: {scrollY < 350 ? 'calc(100vh - ' + scrollY * 0.5 + 'px)' : '75%'};"
-		>
-			<div class="text-2xl w-full lg:text-4xl tracking-widest px-2">
-				<p class="text-md italic">Investasi Terbaik 2024</p>
-				<p class="text-md">Gudang Industri IKN</p>
+				<div class="w-full tracking-widest px-2">
+					<p class="text-2xl sm:text-3xl lg:text-4xl italic">Investasi Terbaik 2024</p>
+					<p class="text-2xl sm:text-3xl lg:text-4xl">Gudang Industri IKN</p>
+				</div>
 			</div>
 			<p class="text-center text-md text-stone-300 lg:text-lg sm:px-12 sm:py-6">
 				Selamat datang di THE FIRST INDUSTRIAL & COMMERCIAL ESTATE terbesar dan terlengkap di
@@ -193,7 +187,7 @@
 					</p>
 					<p class="text-3xl font-bold text-accent">{location.distance}</p>
 					<img
-						class="w-[100vw] rounded-3xl object-cover relative aspect-[5/3] sm:aspect-[4/3]"
+						class="w-[100vw] rounded-xl object-cover relative aspect-[5/3] sm:aspect-[4/3]"
 						src={location.image}
 						alt={location.name}
 					/>
