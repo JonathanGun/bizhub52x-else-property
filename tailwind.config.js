@@ -1,5 +1,11 @@
 const colors = require('tailwindcss/colors');
 
+const DARK_GREEN = '#10281E';
+const DARK_PURPLE = '#350034';
+const DARK_GRAY = '#171717';
+const ACCENT_YELLOW = '#ffd424';
+const WA_GREEN = '#25D366';
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -7,9 +13,10 @@ export default {
 		extend: {},
 		colors: {
 			...colors,
-			black: '#171717',
-			'custom-yellow': '#ffd424',
-			'wa-green': '#25D366'
+			black: DARK_GRAY,
+			accent: ACCENT_YELLOW,
+			'wa-green': WA_GREEN,
+			primary: DARK_GRAY,
 		}
 	},
 	plugins: []

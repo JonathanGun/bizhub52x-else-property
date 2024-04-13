@@ -80,9 +80,9 @@
 
 	const tailwindCls = {
 		container: 'min-h-screen flex items-center',
-		night: 'bg-black text-white',
-		dark: 'bg-gray-800 text-white',
-		light: 'bg-gray-100 text-black',
+		primary: 'bg-primary text-white',
+		bgImgOverlay: 'bg-gray-800 text-white',
+		secondary: 'bg-gray-100 text-black',
 		content: 'w-full text-center py-24 p-6 lg:px-24',
 		btnContact:
 			'bg-neutral-500 hover:bg-neutral-600 text-white text-sm sm:text-md lg:text-lg font-bold py-4 px-12 sm:px-16 lg:px-20 rounded-3xl uppercase tracking-widest',
@@ -113,7 +113,7 @@
 	}
 </script>
 
-<div id="banner" class="{tailwindCls.container} {tailwindCls.night}">
+<div id="banner" class="{tailwindCls.container} {tailwindCls.primary}">
 	<div class="{tailwindCls.content} space-y-6">
 		<div class="w-full flex justify-center">
 			<img class="sm:px-20 lg:w-[1000px]" alt="Bizhub 52x" src={logo} />
@@ -136,16 +136,16 @@
 
 <div
 	id="selling-points"
-	class="{tailwindCls.container} {tailwindCls.dark} bg-blend-overlay bg-cover"
+	class="{tailwindCls.container} {tailwindCls.bgImgOverlay} bg-blend-overlay bg-cover"
 	style="background-image: url({imgPintuTol})"
 >
 	<div class="{tailwindCls.content} {tailwindCls.flexColToRow} space-y-20 sm:space-x-12">
 		{#each selling_points as selling_point}
 			<div class="w-full space-y-6">
-				<h3 class="text-md sm:text-lg lg:text-xl text-custom-yellow font-bold">
+				<h3 class="text-md sm:text-lg lg:text-xl text-accent font-bold">
 					{selling_point.title}
 				</h3>
-				<p class="text-6xl sm:text-7xl lg:text-8xl text-custom-yellow font-bold font-emphasis">
+				<p class="text-6xl sm:text-7xl lg:text-8xl text-accent font-bold font-emphasis">
 					{selling_point.value}
 				</p>
 				<p class="text-wrap text-xl lg:text-3xl text-white font-bold italic">
@@ -156,7 +156,7 @@
 	</div>
 </div>
 
-<div id="locations" class="{tailwindCls.container} {tailwindCls.night}">
+<div id="locations" class="{tailwindCls.container} {tailwindCls.primary}">
 	<div class="{tailwindCls.content} space-y-12">
 		<h2 class="text-5xl sm:text-6xl tracking-wide font-bold">Prime Location</h2>
 		<ul class="{tailwindCls.flexColToRow} space-y-20 sm:space-x-10">
@@ -165,7 +165,7 @@
 					<p class="uppercase text-lg tracking-widest sm:leading-[2.5ex] sm:h-[7.5ex] lg:text-2xl">
 						{location.name}
 					</p>
-					<p class="text-3xl font-bold text-custom-yellow">{location.distance}</p>
+					<p class="text-3xl font-bold text-accent">{location.distance}</p>
 					<img
 						class="w-[100vw] rounded-3xl object-cover relative aspect-[5/3] sm:aspect-[4/3]"
 						src={location.image}
@@ -182,13 +182,13 @@
 
 <div
 	id="specs"
-	class="{tailwindCls.container} {tailwindCls.dark} bg-blend-overlay bg-cover"
+	class="{tailwindCls.container} {tailwindCls.bgImgOverlay} bg-blend-overlay bg-cover"
 	style="background-image: url({imgAirport})"
 >
 	<div class={tailwindCls.content}>
 		<ul class="sm:space-y-2">
 			{#each specs as spec}
-				<li class="text-2xl sm:text-4xl font-bold text-custom-yellow tracking-widest font-emphasis">
+				<li class="text-2xl sm:text-4xl font-bold text-accent tracking-widest font-emphasis">
 					{spec.description}
 				</li>
 			{/each}
@@ -196,10 +196,10 @@
 	</div>
 </div>
 
-<div id="descriptions" class="{tailwindCls.container} {tailwindCls.night}">
+<div id="descriptions" class="{tailwindCls.container} {tailwindCls.primary}">
 	<div class="{tailwindCls.content} space-y-12">
 		<div class="space-y-6 sm:space-y-12">
-			<h2 class="text-5xl sm:text-6xl text-custom-yellow font-bold">{descriptions.title}</h2>
+			<h2 class="text-5xl sm:text-6xl text-accent font-bold">{descriptions.title}</h2>
 			<p class="text-md lg:text-xl sm:px-24 text-stone-300">{descriptions.description}</p>
 		</div>
 		<ul class="{tailwindCls.flexColToRow} space-y-12 sm:space-x-10 lg:space-x-20 sm:p-6">
@@ -216,7 +216,7 @@
 	</div>
 </div>
 
-<div id="contact-else" class="{tailwindCls.container} {tailwindCls.light}">
+<div id="contact-else" class="{tailwindCls.container} {tailwindCls.secondary}">
 	<div class="{tailwindCls.content} space-y-12 flex flex-col">
 		<h2 class="text-4xl">Hubungi Kami</h2>
 		<p class="sm:px-24 lg:px-48">
