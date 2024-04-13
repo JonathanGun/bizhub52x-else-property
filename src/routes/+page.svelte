@@ -80,26 +80,49 @@
 
 	const tailwindCls = {
 		container: 'min-h-screen flex items-center',
+		night: 'bg-black text-white',
 		dark: 'bg-gray-800 text-white',
 		light: 'bg-gray-100 text-black',
 		content: 'w-full text-center py-24 p-6 lg:px-24',
 		btnContact:
 			'bg-neutral-500 hover:bg-neutral-600 text-white text-sm sm:text-md lg:text-lg font-bold py-4 px-12 sm:px-16 lg:px-20 rounded-3xl uppercase tracking-widest',
 		flexColToRow: 'flex flex-col justify-content space-x-0 sm:flex-row sm:space-y-0',
-		btnWA: 'bg-green-400 hover:bg-green-500 w-full p-4 rounded text-white text-xl font-bold'
+		btnWA: 'bg-wa-green hover:bg-green-500 w-full p-4 rounded text-white text-xl font-bold'
 	};
+
+	import { fb } from '@beyonk/svelte-facebook-pixel';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		fb.track('PageView');
+	});
+
+	import { inview } from 'svelte-inview';
+
+	const inViewOptions = {};
+	let contactViewed = false;
+	function trackScrolling(event) {
+		const { inView, entry, scrollDirection, observer, node } = event.detail;
+		if (inView && entry.time > 1000 && !contactViewed) {
+			fb.track('ViewContent');
+			contactViewed = true;
+		}
+	}
+	function trackSubmit() {
+		fb.track('Contact');
+	}
 </script>
 
-<div id="banner" class="{tailwindCls.container} {tailwindCls.dark}">
+<div id="banner" class="{tailwindCls.container} {tailwindCls.night}">
 	<div class="{tailwindCls.content} space-y-6">
 		<div class="w-full flex justify-center">
 			<img class="sm:px-20 lg:w-[1000px]" alt="Bizhub 52x" src={logo} />
 		</div>
-		<div class="text-2xl w-full lg:text-4xl tracking-widest px-6">
-			<p class="italic">Investasi Terbaik 2024</p>
-			<p>Gudang Industri IKN</p>
+		<div class="text-2xl w-full lg:text-4xl tracking-widest px-2">
+			<p class="text-md italic">Investasi Terbaik 2024</p>
+			<p class="text-md">Gudang Industri IKN</p>
 		</div>
-		<p class="text-center text-md lg:text-lg sm:px-12 sm:py-6">
+		<p class="text-center text-md text-stone-300 lg:text-lg sm:px-12 sm:py-6">
 			Selamat datang di THE FIRST INDUSTRIAL & COMMERCIAL ESTATE terbesar dan terlengkap di gerbang
 			Ibu Kota Nusantara. Setelah sukses membangun dan mengelola kawasan pergudangan selama 12
 			tahun, Developer BIZHUB 52 kembali merilis tahap 3 BIZHUB 52X. Kawasan pergudangan ini
@@ -119,8 +142,12 @@
 	<div class="{tailwindCls.content} {tailwindCls.flexColToRow} space-y-20 sm:space-x-12">
 		{#each selling_points as selling_point}
 			<div class="w-full space-y-6">
-				<h3 class="text-md sm:text-lg lg:text-xl text-yellow-300 font-bold">{selling_point.title}</h3>
-				<p class="text-6xl sm:text-7xl lg:text-8xl text-yellow-300 font-bold">{selling_point.value}</p>
+				<h3 class="text-md sm:text-lg lg:text-xl text-custom-yellow font-bold">
+					{selling_point.title}
+				</h3>
+				<p class="text-6xl sm:text-7xl lg:text-8xl text-custom-yellow font-bold font-emphasis">
+					{selling_point.value}
+				</p>
 				<p class="text-wrap text-xl lg:text-3xl text-white font-bold italic">
 					{selling_point.description}
 				</p>
@@ -129,7 +156,7 @@
 	</div>
 </div>
 
-<div id="locations" class="{tailwindCls.container} {tailwindCls.dark}">
+<div id="locations" class="{tailwindCls.container} {tailwindCls.night}">
 	<div class="{tailwindCls.content} space-y-12">
 		<h2 class="text-5xl sm:text-6xl tracking-wide font-bold">Prime Location</h2>
 		<ul class="{tailwindCls.flexColToRow} space-y-20 sm:space-x-10">
@@ -138,7 +165,7 @@
 					<p class="uppercase text-lg tracking-widest sm:leading-[2.5ex] sm:h-[7.5ex] lg:text-2xl">
 						{location.name}
 					</p>
-					<p class="text-3xl font-bold text-yellow-300">{location.distance}</p>
+					<p class="text-3xl font-bold text-custom-yellow">{location.distance}</p>
 					<img
 						class="w-[100vw] rounded-3xl object-cover relative aspect-[5/3] sm:aspect-[4/3]"
 						src={location.image}
@@ -158,26 +185,28 @@
 	class="{tailwindCls.container} {tailwindCls.dark} bg-blend-overlay bg-cover"
 	style="background-image: url({imgAirport})"
 >
-	<div class="{tailwindCls.content}">
+	<div class={tailwindCls.content}>
 		<ul class="sm:space-y-2">
 			{#each specs as spec}
-				<li class="text-2xl sm:text-4xl font-bold text-yellow-300 tracking-widest">{spec.description}</li>
+				<li class="text-2xl sm:text-4xl font-bold text-custom-yellow tracking-widest font-emphasis">
+					{spec.description}
+				</li>
 			{/each}
 		</ul>
 	</div>
 </div>
 
-<div id="descriptions" class="{tailwindCls.container} {tailwindCls.dark}">
+<div id="descriptions" class="{tailwindCls.container} {tailwindCls.night}">
 	<div class="{tailwindCls.content} space-y-12">
 		<div class="space-y-6 sm:space-y-12">
-			<h2 class="text-5xl sm:text-6xl text-yellow-300 font-bold">{descriptions.title}</h2>
-			<p class="text-md lg:text-xl sm:px-24">{descriptions.description}</p>
+			<h2 class="text-5xl sm:text-6xl text-custom-yellow font-bold">{descriptions.title}</h2>
+			<p class="text-md lg:text-xl sm:px-24 text-stone-300">{descriptions.description}</p>
 		</div>
 		<ul class="{tailwindCls.flexColToRow} space-y-12 sm:space-x-10 lg:space-x-20 sm:p-6">
 			{#each descriptions.details as detail}
 				<li class="space-y-4 sm:space-y-0">
-					<h3 class="font-bold uppercase">{detail.title}</h3>
-					<p class="text-md sm:text-justify">{detail.description}</p>
+					<h1 class="font-bold uppercase text-lg text-stone-100">{detail.title}</h1>
+					<p class="text-md sm:text-justify text-stone-300">{detail.description}</p>
 				</li>
 			{/each}
 		</ul>
@@ -213,9 +242,33 @@
 					required
 				/>
 			</div>
-			<button class={tailwindCls.btnWA} type="submit">
-				<a href="https://wa.me/6285225676801?text=halo" target="_blank">Kirim</a>
-			</button>
+			<div>
+				<a href="https://wa.me/6285225676801?text=halo" target="_blank">
+					<button
+						class={tailwindCls.btnWA}
+						type="button"
+						use:inview={inViewOptions}
+						on:click={trackSubmit}
+						on:inview_enter={trackScrolling}
+					>
+						<span>Kirim</span>
+						<i class="fa fa-whatsapp" aria-hidden="true" />
+					</button>
+				</a>
+			</div>
 		</form>
 	</div>
 </div>
+
+<style>
+	h2 {
+		font-family: 'Righteous';
+	}
+	.font-emphasis {
+		font-family: 'Righteous';
+	}
+
+	body {
+		@apply text-stone-100;
+	}
+</style>
