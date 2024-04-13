@@ -94,7 +94,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		fb.track('PageView');
+		fb.track('PageView', { env: import.meta.env.VITE_ENV });
 	});
 
 	import { inview } from 'svelte-inview';
@@ -104,12 +104,12 @@
 	function trackScrolling(event) {
 		const { inView, entry, scrollDirection, observer, node } = event.detail;
 		if (inView && entry.time > 1000 && !contactViewed) {
-			fb.track('ViewContent');
+			fb.track('ViewContent', { env: import.meta.env.VITE_ENV });
 			contactViewed = true;
 		}
 	}
 	function trackSubmit() {
-		fb.track('Contact');
+		fb.track('Contact', { env: import.meta.env.VITE_ENV });
 	}
 </script>
 
@@ -223,7 +223,13 @@
 			Segera Hubungi Kami Untuk Informasi Lebih Lanjut. Jangan Sampai Kesempatan Terbaik ini
 			Terlewatkan.
 		</p>
-		<form class="p-6 w-full space-y-12 lg:p-24">
+		<form
+			class="p-6 w-full space-y-12 lg:p-24"
+			on:submit={trackSubmit}
+			action="https://wa.me/{import.meta.env.VITE_WHATSAPP_NO}?text=halo"
+			target="_blank"
+			method="get"
+		>
 			<div class="space-y-2">
 				<input
 					class="w-full p-3"
@@ -243,18 +249,15 @@
 				/>
 			</div>
 			<div>
-				<a href="https://wa.me/6285225676801?text=halo" target="_blank">
-					<button
-						class={tailwindCls.btnWA}
-						type="button"
-						use:inview={inViewOptions}
-						on:click={trackSubmit}
-						on:inview_enter={trackScrolling}
-					>
-						<span>Kirim</span>
-						<i class="fa fa-whatsapp" aria-hidden="true" />
-					</button>
-				</a>
+				<button
+					class={tailwindCls.btnWA}
+					type="submit"
+					use:inview={inViewOptions}
+					on:inview_enter={trackScrolling}
+				>
+					<span>Kirim</span>
+					<i class="fa fa-whatsapp" aria-hidden="true" />
+				</button>
 			</div>
 		</form>
 	</div>
