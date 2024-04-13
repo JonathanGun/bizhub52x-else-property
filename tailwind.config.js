@@ -5,6 +5,7 @@ const DARK_PURPLE = '#350034';
 const DARK_GRAY = '#171717';
 const ACCENT_YELLOW = '#ffd424';
 const WA_GREEN = '#25D366';
+const DARK_BLUE = '#080D13';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,6 +18,7 @@ export default {
 			accent: ACCENT_YELLOW,
 			'wa-green': WA_GREEN,
 			primary: DARK_GRAY,
+			'banner-blue': DARK_BLUE,
 		}
 	},
 	plugins: []
