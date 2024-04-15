@@ -86,7 +86,7 @@
 		secondary: 'bg-gray-100 text-black',
 		content: 'w-full text-center py-24 p-6 lg:px-24',
 		btnContact:
-			'bg-neutral-500 hover:bg-neutral-600 text-white text-sm sm:text-md lg:text-lg font-bold py-4 px-12 sm:px-16 lg:px-20 rounded-3xl uppercase tracking-widest',
+			'bg-accent hover:bg-accent-dark text-neutral-700 text-sm sm:text-md lg:text-lg font-bold py-4 px-12 sm:px-16 lg:px-20 rounded-3xl uppercase tracking-widest',
 		flexColToRow: 'flex flex-col justify-content space-x-0 sm:flex-row sm:space-y-0',
 		btnWA: 'bg-wa-green hover:bg-green-500 w-full p-4 rounded text-white text-xl font-bold'
 	};
