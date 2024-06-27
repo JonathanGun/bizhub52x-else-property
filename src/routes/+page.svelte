@@ -4,6 +4,7 @@
 	import imgTerminal from '$lib/assets/terminal-peti-kemas-karingau.png';
 	import imgPreview from '$lib/assets/bizhub52x-preview.png';
 	import imgAirport from '$lib/assets/airport-sepingan.png';
+	import imgPoster from '$lib/assets/poster.jpeg';
 
 	const selling_points = [
 		{
@@ -83,6 +84,7 @@
 		container: 'min-h-screen flex items-center',
 		primary: 'bg-primary text-white',
 		bgImgOverlay: 'bg-gray-800 text-white bg-blend-overlay bg-cover bg-center bg-no-repeat',
+		bgImg: 'bg-gray-800 text-white bg-center bg-no-repeat bg-contain',
 		secondary: 'bg-gray-100 text-black',
 		content: 'w-full text-center py-24 p-6 lg:px-24',
 		btnContact:
@@ -147,9 +149,7 @@
 	</div>
 
 	<div class={tailwindCls.primary}>
-		<div
-			class="{tailwindCls.content} space-y-6 absolute flex flex-col items-center inset-0"
-		>
+		<div class="{tailwindCls.content} space-y-6 absolute flex flex-col items-center inset-0">
 			<div class="w-full space-y-6">
 				<div class="w-full flex justify-center">
 					<img class="sm:px-20 lg:w-[1000px]" alt="Bizhub 52x" src={logo} />
@@ -243,6 +243,13 @@
 			<a href="#contact-else">Brosur & Price List</a>
 		</button>
 	</div>
+</div>
+
+<div id="poster" class="{tailwindCls.container} bg-gray-800 flex items-center justify-center">
+	<div
+		class="w-full lg:w-[50vw] {tailwindCls.bgImg} aspect-[3/5] rounded-xl"
+		style="background-image: url({imgPoster})"
+	></div>
 </div>
 
 <div
