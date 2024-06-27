@@ -8,12 +8,12 @@
 	const selling_points = [
 		{
 			title: 'Start Price',
-			value: '2,6 M',
+			value: '2,5 M-an',
 			description: 'Developer Terpercaya'
 		},
 		{
 			title: 'Cicilan',
-			value: '60x',
+			value: '48x',
 			description: 'Belum Lunas Sudah Tersewa'
 		},
 		{
